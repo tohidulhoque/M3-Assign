@@ -1,17 +1,29 @@
 <?php
-//Password Generator
 function generatePassword($length){
-    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
+    $lowercase = 'abcdefghijklmnopqrstuvwxyz';
+    $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $numbers = '0123456789';
+    $specialChars = '!@#$%^&*()_+';
+
     $password = '';
 
-    $maxIndex = strlen($characters) - 1;
+    $password .= $lowercase[rand(0, strlen($lowercase) - 1)];
+    $password .= $uppercase[rand(0, strlen($uppercase) - 1)];
+    $password .= $numbers[rand(0, strlen($numbers) - 1)];
+    $password .= $specialChars[rand(0, strlen($specialChars) - 1)];
 
-    for ($i = 0; $i < $length; $i++) {
-        $randomIndex = mt_rand(0, $maxIndex);
-        $password .= $characters[$randomIndex];
+    $remainingLength = $length - 4;
+    $allChars = $lowercase . $uppercase . $numbers . $specialChars;
+
+    for ($i = 0; $i < $remainingLength; $i++) {
+        $password .= $allChars[rand(0, strlen($allChars) - 1)];
     }
+
+    $password = str_shuffle($password);
 
     return $password;
 }
+
 $password = generatePassword(12);
-echo "Generated Password: " . $password;
+
+echo "Generated Password: $password";

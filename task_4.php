@@ -1,41 +1,43 @@
 <?php
-// Multidimensional Array
 
 $studentGrades = [
-    [
-        'name' => 'Student 1',
-        'grades' => [
-            'Math' => 85,
-            'English' => 79,
-            'Science' => 88,
-        ],
+    'Enam' => [
+        'Math' => 85,
+        'English' => 79,
+        'Science' => 88
     ],
-    [
-        'name' => 'Student 2',
-        'grades' => [
-            'Math' => 81,
-            'English' => 89,
-            'Science' => 91,
-        ],
+    'Fahim' => [
+        'Math' => 70,
+        'English' => 66,
+        'Science' => 75
     ],
-    [
-        'name' => 'Student 3',
-        'grades' => [
-            'Math' => 90,
-            'English' => 81,
-            'Science' => 72,
-        ],
+    'Nazrul' => [
+        'Math' => 45,
+        'English' => 50,
+        'Science' => 53
     ],
 ];
 
 function calculateAverageGrades($studentGrades){
-    foreach ($studentGrades as $student) {
-        $name = $student['name'];
-        $grades = $student['grades'];
 
-        $averageGrade = array_sum($grades) / count($grades);
+    foreach ($studentGrades as $student => $grades) {
+        $totalGrade = array_sum($grades);
+        $numSubjects = count($grades);
+        $averageGrade = $totalGrade / $numSubjects;
 
-        echo "$name's Average Grade: $averageGrade\n";
+        if ($averageGrade >= 80) {
+            echo "$student's Average Grade: A+\n";
+        } elseif ($averageGrade >= 70) {
+            echo "$student's Average Grade: A\n";
+        } elseif ($averageGrade >= 60) {
+            echo "$student's Average Grade: B\n";
+        } elseif ($averageGrade >= 50) {
+            echo "$student's Average Grade: C\n";
+        } elseif ($averageGrade >= 40) {
+            echo "$student's Average Grade: D\n";
+        } else {
+            echo "$student's Average Grade: F\n";
+        }
     }
 }
 
